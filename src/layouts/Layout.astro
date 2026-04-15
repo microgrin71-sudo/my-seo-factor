@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'SEO-Модуль - Фабрика сайтов' } = Astro.props;
+---
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title}</title>
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen">
+  <header class="bg-white border-b border-gray-200">
+    <nav class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/" class="text-xl font-bold text-purple-600">SEO-Factor</a>
+      <a href="/" class="text-sm text-gray-600 hover:text-purple-600">Блог</a>
+    </nav>
+  </header>
+  <main class="max-w-4xl mx-auto px-4 py-8">
+    <slot />
+  </main>
+  <footer class="border-t border-gray-200 mt-16">
+    <div class="max-w-4xl mx-auto px-4 py-6 text-center text-sm text-gray-500">
+      &copy; {new Date().getFullYear()} SEO-Factor. Создано с помощью СЕО-Модуля.
+    </div>
+  </footer>
+</body>
+</html>
