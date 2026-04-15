@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+const siteName = 'Тест';
+---
+<Layout title="Контакты">
+  <div class="max-w-article mx-auto px-6 py-20">
+    <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-neutral-900 leading-[1.08] mb-8">
+      Контакты
+    </h1>
+    <div class="prose prose-neutral prose-lg max-w-none">
+      <p>Свяжитесь с нами для сотрудничества или по любым вопросам.</p>
+      <div class="mt-10 p-8 bg-neutral-50 rounded-2xl border border-neutral-100">
+        <p class="text-neutral-600 mb-2"><strong>Email:</strong> info@{siteName.toLowerCase().replace(/\s+/g, '')}.com</p>
+      </div>
+    </div>
+  </div>
+</Layout>
