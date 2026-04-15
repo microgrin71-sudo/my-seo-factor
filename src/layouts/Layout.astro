@@ -6,8 +6,8 @@ interface Props {
 }
 const { title, description = '', jsonLd } = Astro.props;
 const currentPath = Astro.url.pathname;
-const siteName = 'Тест';
-const siteCopyright = 'Тест';
+const siteName = 'НОвый';
+const siteCopyright = 'НОвый';
 ---
 <!doctype html>
 <html lang="ru" class="scroll-smooth">
@@ -27,10 +27,10 @@ const siteCopyright = 'Тест';
   <style>
     #reading-progress {
       position: fixed; top: 0; left: 0; height: 2px; z-index: 9999;
-      background: #000;
+      background: #6366f1;
       transition: width 0.1s linear; width: 0%;
     }
-    .toc-link.active { color: #000; font-weight: 600; }
+    .toc-link.active { color: #6366f1; font-weight: 600; }
   </style>
 </head>
 <body class="font-sans bg-white text-neutral-900 antialiased min-h-screen flex flex-col">
