@@ -4,10 +4,10 @@ interface Props {
   description?: string;
   jsonLd?: string;
 }
-const { title, description = 'Экспертный блог', jsonLd } = Astro.props;
+const { title, description = '', jsonLd } = Astro.props;
 const currentPath = Astro.url.pathname;
-const siteName = 'SEO-Factor';
-const siteCopyright = 'SEO-Factor';
+const siteName = 'Тест';
+const siteCopyright = 'Тест';
 ---
 <!doctype html>
 <html lang="ru" class="scroll-smooth">
@@ -30,54 +30,42 @@ const siteCopyright = 'SEO-Factor';
       background: #000;
       transition: width 0.1s linear; width: 0%;
     }
-    .toc-link.active {
-      color: #000;
-      font-weight: 600;
-    }
+    .toc-link.active { color: #000; font-weight: 600; }
   </style>
 </head>
 <body class="font-sans bg-white text-neutral-900 antialiased min-h-screen flex flex-col">
-  <!-- Reading Progress -->
   <div id="reading-progress"></div>
 
-  <!-- Header -->
   <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-neutral-100">
     <nav class="max-w-screen-xl mx-auto px-6 h-14 flex items-center justify-between">
       <a href="/" class="text-lg font-extrabold tracking-tight text-neutral-900 hover:opacity-70 transition-opacity">
         {siteName}
       </a>
       <div class="flex items-center gap-8">
-        <a href="/"
-          class:list={[
-            "text-[13px] font-medium tracking-wide uppercase transition-colors",
-            currentPath === "/" ? "text-neutral-900" : "text-neutral-400 hover:text-neutral-600"
-          ]}>
+        <a href="/" class:list={["text-[13px] font-medium tracking-wide uppercase transition-colors", currentPath === "/" ? "text-neutral-900" : "text-neutral-400 hover:text-neutral-600"]}>
           Блог
         </a>
-        <a href="/"
-          class:list={[
-            "text-[13px] font-medium tracking-wide uppercase transition-colors",
-            "text-neutral-400 hover:text-neutral-600"
-          ]}>
-          Статьи
+        <a href="/about/" class:list={["text-[13px] font-medium tracking-wide uppercase transition-colors", currentPath.startsWith("/about") ? "text-neutral-900" : "text-neutral-400 hover:text-neutral-600"]}>
+          О нас
+        </a>
+        <a href="/contacts/" class:list={["text-[13px] font-medium tracking-wide uppercase transition-colors", currentPath.startsWith("/contacts") ? "text-neutral-900" : "text-neutral-400 hover:text-neutral-600"]}>
+          Контакты
         </a>
       </div>
     </nav>
   </header>
 
-  <!-- Main -->
   <main class="flex-1 w-full">
     <slot />
   </main>
 
-  <!-- Footer -->
   <footer class="border-t border-neutral-100">
     <div class="max-w-screen-xl mx-auto px-6 py-12">
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
         <span class="text-sm font-semibold text-neutral-900">{siteName}</span>
         <p class="text-xs text-neutral-400">
           &copy; {new Date().getFullYear()} {siteCopyright}. Создано с помощью
-          <a href="https://seo-modul.pro" target="_blank" rel="noopener" class="text-neutral-500 hover:text-neutral-900 transition-colors underline underline-offset-2">СЕО-Модуля</a>.
+          <a href="https://seo-modul.pro" target="_blank" rel="noopener" class="text-neutral-500 hover:text-neutral-900 transition-colors underline underline-offset-2">SEO-Module</a>.
         </p>
       </div>
     </div>
