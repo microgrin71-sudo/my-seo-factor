@@ -4,9 +4,10 @@ interface Props {
   description?: string;
   jsonLd?: string;
 }
-const { title, description = 'SEO-блог — экспертные статьи', jsonLd } = Astro.props;
+const { title, description = 'Экспертный блог', jsonLd } = Astro.props;
 const currentPath = Astro.url.pathname;
 const siteName = 'SEO-Factor';
+const siteCopyright = 'SEO-Factor';
 ---
 <!doctype html>
 <html lang="ru" class="scroll-smooth">
@@ -22,38 +23,41 @@ const siteName = 'SEO-Factor';
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
-  <title>{title} — {siteName}</title>
+  <title>{title} - {siteName}</title>
   <style>
     #reading-progress {
-      position: fixed; top: 0; left: 0; height: 3px; z-index: 9999;
-      background: linear-gradient(90deg, #8b5cf6, #a78bfa, #c084fc);
+      position: fixed; top: 0; left: 0; height: 2px; z-index: 9999;
+      background: #000;
       transition: width 0.1s linear; width: 0%;
-      box-shadow: 0 0 8px rgba(139,92,246,0.5);
+    }
+    .toc-link.active {
+      color: #000;
+      font-weight: 600;
     }
   </style>
 </head>
-<body class="font-sans bg-gray-50 text-gray-900 antialiased min-h-screen flex flex-col">
+<body class="font-sans bg-white text-neutral-900 antialiased min-h-screen flex flex-col">
   <!-- Reading Progress -->
   <div id="reading-progress"></div>
 
-  <!-- Glassmorphism Header -->
-  <header class="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-gray-200/50 shadow-sm">
-    <nav class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-2.5 group">
-        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-500 via-purple-500 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-violet-200/50 group-hover:shadow-violet-300/60 transition-all group-hover:scale-105">
-          <svg class="w-4.5 h-4.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-          </svg>
-        </div>
-        <span class="text-lg font-extrabold bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 bg-clip-text text-transparent">
-          {siteName}
-        </span>
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-neutral-100">
+    <nav class="max-w-screen-xl mx-auto px-6 h-14 flex items-center justify-between">
+      <a href="/" class="text-lg font-extrabold tracking-tight text-neutral-900 hover:opacity-70 transition-opacity">
+        {siteName}
       </a>
-      <div class="flex items-center gap-6">
+      <div class="flex items-center gap-8">
         <a href="/"
           class:list={[
-            "text-sm font-medium transition-colors hover:text-violet-600",
-            currentPath === "/" ? "text-violet-600" : "text-gray-500"
+            "text-[13px] font-medium tracking-wide uppercase transition-colors",
+            currentPath === "/" ? "text-neutral-900" : "text-neutral-400 hover:text-neutral-600"
+          ]}>
+          Блог
+        </a>
+        <a href="/"
+          class:list={[
+            "text-[13px] font-medium tracking-wide uppercase transition-colors",
+            "text-neutral-400 hover:text-neutral-600"
           ]}>
           Статьи
         </a>
@@ -67,20 +71,13 @@ const siteName = 'SEO-Factor';
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-gray-200/60 bg-white">
-    <div class="max-w-4xl mx-auto px-6 py-10">
+  <footer class="border-t border-neutral-100">
+    <div class="max-w-screen-xl mx-auto px-6 py-12">
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div class="flex items-center gap-2.5">
-          <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center">
-            <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-            </svg>
-          </div>
-          <span class="text-sm font-bold text-gray-800">{siteName}</span>
-        </div>
-        <p class="text-xs text-gray-400">
-          &copy; {new Date().getFullYear()} {siteName}. Создано с помощью
-          <a href="https://seo-modul.pro" target="_blank" rel="noopener" class="text-violet-500 hover:text-violet-600 transition-colors ml-1">СЕО-Модуля</a>.
+        <span class="text-sm font-semibold text-neutral-900">{siteName}</span>
+        <p class="text-xs text-neutral-400">
+          &copy; {new Date().getFullYear()} {siteCopyright}. Создано с помощью
+          <a href="https://seo-modul.pro" target="_blank" rel="noopener" class="text-neutral-500 hover:text-neutral-900 transition-colors underline underline-offset-2">СЕО-Модуля</a>.
         </p>
       </div>
     </div>
