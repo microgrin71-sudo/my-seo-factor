@@ -38,7 +38,7 @@ const jsonLd = JSON.stringify({
   "datePublished": pubDate || new Date().toISOString(),
   "dateModified": pubDate || new Date().toISOString(),
   "author": { "@type": "Person", "name": authorName },
-  "publisher": { "@type": "Organization", "name": "НОвый" },
+  "publisher": { "@type": "Organization", "name": "Блог о разном" },
   "keywords": (post.data.keywords || []).join(", "),
   "mainEntityOfPage": { "@type": "WebPage", "@id": Astro.url.href },
 });
