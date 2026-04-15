@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('blog')).sort(
   (a, b) => new Date(b.data.pubDate || b.data.date || 0).getTime() - new Date(a.data.pubDate || a.data.date || 0).getTime()
 );
-const siteName = 'НОвый';
+const siteName = 'Блог о разном';
 const siteAbout = '';
 ---
 <Layout title={"Наш блог — " + siteName} description={siteAbout}>
