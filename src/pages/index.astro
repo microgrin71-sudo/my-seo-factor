@@ -5,12 +5,11 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('blog')).sort(
   (a, b) => new Date(b.data.pubDate || b.data.date || 0).getTime() - new Date(a.data.pubDate || a.data.date || 0).getTime()
 );
-const siteName = 'SEO-Factor';
-const siteAbout = 'Авторские статьи по SEO, маркетингу и продвижению - написаны экспертами, проверены практикой.';
+const siteName = 'Тест';
+const siteAbout = '';
 ---
 <Layout title={siteName} description={siteAbout}>
   <div class="max-w-screen-xl mx-auto px-6 py-20">
-    <!-- Hero -->
     <div class="max-w-2xl mb-16">
       <h1 class="text-5xl sm:text-6xl font-extrabold tracking-tight text-neutral-900 leading-[1.05]">
         {siteName}
@@ -26,25 +25,17 @@ const siteAbout = 'Авторские статьи по SEO, маркетинг�
       </div>
     )}
 
-    <!-- Articles Grid -->
     <div class="grid gap-px bg-neutral-100 border border-neutral-100 rounded-2xl overflow-hidden">
-      {posts.map((post, idx) => {
+      {posts.map((post) => {
         const pubDate = post.data.pubDate || post.data.date;
-        const kw = (post.data.keywords || [])[0] || 'article';
-        const heroSrc = post.data.heroImage || `https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&h=400&fit=crop&q=80`;
+        const kw = (post.data.keywords && post.data.keywords[0]) || post.data.title || 'business';
+        const heroSrc = post.data.heroImage || `https://source.unsplash.com/800x400/?${encodeURIComponent(kw)}`;
         return (
           <a href={`/blog/${post.id}/`}
             class="group flex flex-col sm:flex-row bg-white transition-colors hover:bg-neutral-50">
-            <!-- Thumbnail -->
             <div class="sm:w-72 shrink-0 overflow-hidden">
-              <img
-                src={heroSrc}
-                alt={post.data.title}
-                class="w-full h-48 sm:h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
-              />
+              <img src={heroSrc} alt={post.data.title} class="w-full h-48 sm:h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             </div>
-            <!-- Content -->
             <div class="flex-1 p-6 sm:p-8 flex flex-col justify-center">
               <div class="flex items-center gap-3 mb-3">
                 {pubDate && (
@@ -53,7 +44,7 @@ const siteAbout = 'Авторские статьи по SEO, маркетинг�
                   </time>
                 )}
                 {post.data.author && (
-                  <span class="text-xs text-neutral-400">-  {post.data.author}</span>
+                  <span class="text-xs text-neutral-400">- {post.data.author}</span>
                 )}
               </div>
               <h2 class="text-xl font-bold text-neutral-900 group-hover:text-neutral-600 transition-colors leading-snug tracking-tight">
