@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+const siteName = 'Тест';
+const siteAbout = '';
+---
+<Layout title="О нас" description={siteAbout}>
+  <div class="max-w-article mx-auto px-6 py-20">
+    <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-neutral-900 leading-[1.08] mb-8">
+      О нас
+    </h1>
+    <div class="prose prose-neutral prose-lg max-w-none">
+      <p class="text-xl text-neutral-500 leading-relaxed mb-8">{siteAbout}</p>
+      <p>Мы - команда экспертов, которая помогает бизнесу расти через качественный контент и SEO-оптимизацию.</p>
+    </div>
+  </div>
+</Layout>
